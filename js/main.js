@@ -1,6 +1,7 @@
 class Player {
   constructor(symbol) {
     this.symbol = symbol; // "X" or "O"
+    this.points = [0, 0];
   }
 }
 
@@ -72,8 +73,10 @@ class Game {
   constructor() {
     this.board = new Board();
     this.players = [new Player("X"), new Player("O")];
+    this.score = new Player();
     this.currentPlayerIndex = 0; // start with Player X
     this.statusElement = document.getElementById("status");
+    this.scoreElement = document.getElementById("score");
     this.restartButton = document.getElementById("restart");
 
     // Add event listener for restart button
@@ -103,6 +106,7 @@ class Game {
       // Check win
       if (this.board.checkWin(player.symbol)) {
         this.updateStatus(`Player ${player.symbol} wins!`);
+        this.updateScore(player.symbol);
         this.disableBoard();
         return;
       }
@@ -122,6 +126,17 @@ class Game {
   // Switch to the other player
   switchTurn() {
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % 2;
+  }
+
+  // Update score
+  updateScore(symbol) {
+    console.log(symbol);
+    if (symbol === "X") {
+      this.score.points[0] += 1;
+    } else {
+      this.score.points[1] += 1;
+    }
+    this.scoreElement.textContent = `Score: X - ${this.score.points[0]} | O - ${this.score.points[1]}`;
   }
 
   // Update status message
