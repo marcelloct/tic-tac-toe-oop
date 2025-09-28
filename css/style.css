@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -15,15 +19,12 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  gap: 5px;
   margin: 20px auto;
 }
 
 .cell {
   width: 100px;
   height: 100px;
-  background: white;
-  border: 2px solid #333;
   font-size: 2em;
   font-weight: bold;
   display: flex;
@@ -37,7 +38,25 @@ body {
   color: #444;
 }
 
-.status {
+[data-index="0"],
+[data-index="1"],
+[data-index="2"],
+[data-index="3"],
+[data-index="4"],
+[data-index="5"] {
+  border-bottom: 4px solid #333;
+}
+
+[data-index="0"],
+[data-index="1"],
+[data-index="3"],
+[data-index="4"],
+[data-index="6"],
+[data-index="7"] {
+  border-right: 4px solid #333;
+}
+
+.game-info {
   margin: 10px 0;
   font-size: 1.2em;
 }
